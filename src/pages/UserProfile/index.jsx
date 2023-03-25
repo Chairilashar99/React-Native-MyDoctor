@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Gap, Header, List, Profile} from '../../components';
 
-export default function UserProfile() {
+export default function UserProfile({navigation}) {
   return (
     <View style={styles.page}>
       <Header title="Profile" />
@@ -14,6 +14,7 @@ export default function UserProfile() {
         desc="Last Update Yesterday"
         type="next"
         icon="edit-profile"
+        onPress={() => navigation.navigate('UpdateProfile')}
       />
       <List
         name="Edit Profile"
