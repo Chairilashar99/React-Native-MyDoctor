@@ -23,6 +23,15 @@ export default function Register({navigation}) {
       .then(success => {
         setLoading(false);
         setForm('reset');
+        //example: https://firebase.com/users/i39d9w9chd
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+        };
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
         console.log('register success: ', success);
       })
       .catch(error => {
