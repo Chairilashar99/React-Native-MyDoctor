@@ -4,19 +4,26 @@ import {Button, Gap, Header, Link} from '../../components';
 import {IconAddPhoto, IconRemovePhoto, ILNullPhoto} from '../../assets';
 import {colors, fonts} from '../../utils';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {showMessage} from 'react-native-flash-message';
 
 export default function UploadPhoto({navigation}) {
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
   handleChangePhoto = () => {
     launchImageLibrary({}, response => {
-      console.log('response', response);
-      const source = {uri: response.uri};
-      setPhoto(source);
-      setHasPhoto(true);
-      // if (response) {
-      //   setPhoto(response);
-      // }
+      console.log('response: ', response);
+      if (response.didCancel) {
+        showMessage({
+          message: 'oops, sepertinya anda tidak memilih foto nya?',
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      } else {
+        const source = {uri: response.assets[0].uri};
+        setPhoto(source);
+        setHasPhoto(true);
+      }
     });
   };
   return (
