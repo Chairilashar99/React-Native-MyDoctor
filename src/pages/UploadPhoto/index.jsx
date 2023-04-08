@@ -12,7 +12,7 @@ export default function UploadPhoto({navigation}) {
   handleChangePhoto = () => {
     launchImageLibrary({}, response => {
       console.log('response: ', response);
-      if (response.didCancel) {
+      if (response.didCancel || response.error) {
         showMessage({
           message: 'oops, sepertinya anda tidak memilih foto nya?',
           type: 'default',
