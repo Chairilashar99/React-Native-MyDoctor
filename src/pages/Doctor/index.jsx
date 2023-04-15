@@ -16,11 +16,6 @@ import {
 } from '../../assets';
 
 export default function Doctor({navigation}) {
-  // useEffect(() => {
-  //   getData('user').then(res => {
-  //     console.log('data user: ', res);
-  //   });
-  // }, []);
   return (
     <View style={styles.page}>
       <View style={styles.content}>
