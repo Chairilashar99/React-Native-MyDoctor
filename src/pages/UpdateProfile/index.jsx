@@ -1,7 +1,7 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Button, Gap, Header, Input, Profile} from '../../components';
-import {colors, getData} from '../../utils';
+import {colors, getData, showError} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -32,12 +32,13 @@ export default function UpdateProfile({navigation}) {
 
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Password kurang dari 6 karakter',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: 'white',
-        });
+        // showMessage({
+        //   message: 'Password kurang dari 6 karakter',
+        //   type: 'default',
+        //   backgroundColor: colors.error,
+        //   color: 'white',
+        // });
+        showError('Password kurang dari 6 karakter');
       } else {
         //update password
         updatePassword();
